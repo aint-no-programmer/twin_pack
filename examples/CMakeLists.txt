@@ -1,5 +1,3 @@
-cmake_minimum_required (VERSION 3.7)
-
 set(TARGET_NAME ${PROJECT_NAME}_examples)
 
 file(GLOB HEADERS_FILES *.h *.hpp)
