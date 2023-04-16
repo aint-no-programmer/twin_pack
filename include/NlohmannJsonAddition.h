@@ -17,7 +17,7 @@ namespace nlohmann {
 			case 4: v = { "value", boost::get<std::string>(value) }; break;
 			default:
 			{
-				throw json::out_of_range::create(401, "Not valid type of property_value when use <to_json>. It is out of range [0 - 4]. Not valid type is " + std::to_string(value.which()));
+				throw json::out_of_range::create(401, "Not valid type of property_value when use <to_json>. It is out of range [0 - 4]. Not valid type is " + std::to_string(value.which()), &j);
 				break;
 			}
 			}
@@ -34,7 +34,7 @@ namespace nlohmann {
 			case 4: value = j.at("value").get<std::string>(); break;
 			default:
 			{
-				throw json::out_of_range::create(401, "Not valid json type of property_value when use <from_json>. It is out of range [0 - 4]. Not valid type is " + std::to_string(type));
+				throw json::out_of_range::create(401, "Not valid json type of property_value when use <from_json>. It is out of range [0 - 4]. Not valid type is " + std::to_string(type), &j);
 				break;
 			}
 			}
