@@ -244,6 +244,13 @@ protected:
 
 /*Tests*/
 /*--------------------------------------------------------------------------------------------------------*/
+TEST(property_value, default_blank)
+{
+	property_value value;
+	ASSERT_EQ(value.which(), 0);
+	boost::blank* gotten = boost::get<boost::blank>(&value);
+	ASSERT_NE(gotten, nullptr);
+}
 TEST_F(Test_of_SimpleClass, json_test)
 {
 

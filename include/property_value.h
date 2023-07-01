@@ -13,10 +13,23 @@ namespace twin_pack
 	class property_value : public boost::variant<TWIN_PACK_SERIALIZATION_TYPES>
 	{
 	public:
-		//mytodo TODO make moving ctors
-		property_value(const property_value& value) { *this = value; }
+		property_value(const property_value& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(value) { }
+		property_value(property_value&& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(std::move(value)) { }
+		property_value& operator=(const property_value& value)
+		{
+			boost::variant<TWIN_PACK_SERIALIZATION_TYPES>::operator=(value);
+			return *this;
+		}
+		property_value& operator=(property_value&& value)
+		{
+			boost::variant<TWIN_PACK_SERIALIZATION_TYPES>::operator=(std::move(value));
+			return *this;
+		}
+
+		property_value() = default;
+		~property_value() = default;
+
 		property_value(const boost::variant<TWIN_PACK_SERIALIZATION_TYPES>& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(value) {}
-		property_value() : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>() {}
 		property_value(const bool& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(value) {}
 		property_value(const int32_t& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(int64_t(value)) {}
 		property_value(const int64_t& value) : boost::variant<TWIN_PACK_SERIALIZATION_TYPES>(value) {}
@@ -30,15 +43,6 @@ namespace twin_pack
 		{
 			return boost::variant<TWIN_PACK_SERIALIZATION_TYPES>::operator==(static_cast<boost::variant<TWIN_PACK_SERIALIZATION_TYPES>>(rhs));
 		}
-		//-------------------------TEST------------------------------------------
-		//using boost::variant<TWIN_PACK_SERIALIZATION_TYPES>::operator=;
-
-		//mytodo TODO make std::move property_value&& operator=()
-		//property_value& operator=(const property_value& rhs) 
-		//{
-		//	boost::variant<TWIN_PACK_SERIALIZATION_TYPES>::operator=(rhs);
-		//	return *this;
-		//}
 	};
 }
 
