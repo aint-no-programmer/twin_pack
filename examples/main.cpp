@@ -10,7 +10,7 @@
  * 1. Inherit class from ISerializableObject
  * 2. In public part of class add macro PACK_IT:
  *														first arg - class name,
- *														other args - fields of class need to be serialzed
+ *														other args - fields of class need to be serialized
  * 3. That's all
  *
  * For serialization:

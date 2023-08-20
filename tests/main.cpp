@@ -185,9 +185,9 @@ protected:
 		first_object.value_int64_t = 34342423423423424;
 		first_object.value_float = 232.2323f;
 		first_object.value_double = 2.232323232323;
-		first_object.value_string = (const char*)"Hello shaggy cop =)";
+		first_object.value_string = (const char*)"Hello world!";
 		first_object.value_vector = { (int64_t)123, 12.21, (const char*)"kjsdkjskd123213", 123.12313f, true, false, (const char*)"true/false" };//123.12313
-		first_object.value_map = { {"property_value", property_value()}, {"PropertyValue2", property_value(212.09090f)}, {"123", 12.21}, {"123213", 123.12313}, {"true", false}, {"true/false", (int64_t)54321}, {"string", (std::string)"f*ck the world"} };
+		first_object.value_map = { {"property_value", property_value()}, {"PropertyValue2", property_value(212.09090f)}, {"123", 12.21}, {"123213", 123.12313}, {"true", false}, {"true/false", (int64_t)54321}, {"string", (std::string)"bonum vinum laetificat cor hominis"} };
 	}
 	void TearDown()
 	{
@@ -203,16 +203,16 @@ class Test_of_ComplexMessage : public ::testing::Test
 protected:
 	void SetUp()
 	{
-		first_object.value_string = "Complex test for shaggy cop";
+		first_object.value_string = "Complex test";
 		//
 		first_object.someMessage.value_bool = true;
 		first_object.someMessage.value_int = 345;
 		first_object.someMessage.value_int64_t = 34342423423423424;
 		first_object.someMessage.value_float = 232.2323f;
 		first_object.someMessage.value_double = 2.232323232323;
-		first_object.someMessage.value_string = (const char*)"Hello shaggy cop =)";
+		first_object.someMessage.value_string = (const char*)"Hello world!";
 		first_object.someMessage.value_vector = { (int64_t)123, 12.21, (const char*)"kjsdkjskd123213", 123.12313f, true, false, (const char*)"true/false" };//123.12313
-		first_object.someMessage.value_map = { {"property_value", property_value()}, {"PropertyValue2", property_value(212.09090f)}, {"123", 12.21}, {"123213", 123.12313}, {"true", false}, {"true/false", (int64_t)54321}, {"string", (std::string)"f*ck the world"} };
+		first_object.someMessage.value_map = { {"property_value", property_value()}, {"PropertyValue2", property_value(212.09090f)}, {"123", 12.21}, {"123213", 123.12313}, {"true", false}, {"true/false", (int64_t)54321}, {"string", (std::string)"bonum vinum laetificat cor hominis"} };
 	}
 	void TearDown()
 	{
@@ -259,10 +259,10 @@ TEST_F(Test_of_SimpleClass, json_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	TEST_OUTPUT(v_json.dump());
 	ok = second.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 
 	TEST_OUTPUT("\t\tfirst");
 	output::print_variables(first.str);
@@ -292,9 +292,9 @@ TEST_F(Test_of_SimpleClass, binary_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = second.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 
 	TEST_OUTPUT("\t\tfirst");
 	output::print_variables(first.str);
@@ -314,7 +314,7 @@ TEST_F(Test_of_SimpleClass, binary_test)
 	output::print_variables(second.simple_struct.e);
 	output::print_variables(second.simple_struct.f);
 
-	ASSERT_EQ(compare(first, second), true);
+	ASSERT_TRUE(compare(first, second));
 }
 
 TEST_F(Test_of_SomeMessage, binary_test)
@@ -324,9 +324,9 @@ TEST_F(Test_of_SomeMessage, binary_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = second_object.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 
 	TEST_OUTPUT("\t\tfirst_object");
 	output::print_variables(first_object.value_vector);
@@ -335,7 +335,7 @@ TEST_F(Test_of_SomeMessage, binary_test)
 	output::print_variables(first_object.value_vector);
 	output::print_variables(second_object.value_map);
 
-	ASSERT_EQ(compare(first_object, second_object), true);
+	ASSERT_TRUE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_SomeMessage, json_test)
@@ -345,10 +345,10 @@ TEST_F(Test_of_SomeMessage, json_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	TEST_OUTPUT(v_json.dump());
 	ok = second_object.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	
 	TEST_OUTPUT("\t\tfirst_object");
 	output::print_variables(first_object.value_vector);
@@ -357,7 +357,7 @@ TEST_F(Test_of_SomeMessage, json_test)
 	output::print_variables(first_object.value_vector);
 	output::print_variables(second_object.value_map);
 	
-	ASSERT_EQ(compare(first_object, second_object), true);
+	ASSERT_TRUE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_ComplexMessage, complex_message_binary_test)
@@ -367,11 +367,11 @@ TEST_F(Test_of_ComplexMessage, complex_message_binary_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = second_object.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 
-	ASSERT_EQ(compare(first_object, second_object), true);
+	ASSERT_TRUE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_ComplexMessage, complex_message_json_test)
@@ -382,12 +382,12 @@ TEST_F(Test_of_ComplexMessage, complex_message_json_test)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	TEST_OUTPUT(v_json.dump());
 	ok = second_object.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 
-	ASSERT_EQ(compare(first_object, second_object), true);
+	ASSERT_TRUE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_BlankMessage, blank_test_positive)
@@ -397,16 +397,16 @@ TEST_F(Test_of_BlankMessage, blank_test_positive)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = temporary_object.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	json v_json;
 	ok = temporary_object.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = second_object.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	
-	ASSERT_EQ(compare(first_object, second_object), true);
+	ASSERT_TRUE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_BlankMessage, blank_test_negative)
@@ -416,19 +416,19 @@ TEST_F(Test_of_BlankMessage, blank_test_negative)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = temporary_object.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	json v_json;
 	ok = temporary_object.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	ok = second_object.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	
 	//make objects not equal
 	second_object.m_value_1 = 5;
 
-	ASSERT_EQ(compare(first_object, second_object), false);
+	ASSERT_FALSE(compare(first_object, second_object));
 }
 
 TEST_F(Test_of_SomeMessage, binary_unserialize_exception)
@@ -438,10 +438,10 @@ TEST_F(Test_of_SomeMessage, binary_unserialize_exception)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(stream, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	stream.str("bad message");
 	ok = second_object.unserialize(stream, msg_error);
-	ASSERT_EQ(ok, false);
+	ASSERT_FALSE(ok);
 	TEST_OUTPUT(msg_error)
 }
 
@@ -452,10 +452,10 @@ TEST_F(Test_of_SomeMessage, json_unserialize_exception)
 	std::string msg_error;
 	bool ok = false;
 	ok = first_object.serialize(v_json, msg_error);
-	ASSERT_EQ(ok, true);
+	ASSERT_TRUE(ok);
 	v_json = {"bad message"};
 	ok = second_object.unserialize(v_json, msg_error);
-	ASSERT_EQ(ok, false);
+	ASSERT_FALSE(ok);
 	TEST_OUTPUT(msg_error)
 }
 
