@@ -20,4 +20,7 @@ target_link_libraries(${PROJECT_NAME} INTERFACE msgpack-cxx nlohmann_json::nlohm
 enable_testing()
 
 add_subdirectory(examples)
-add_subdirectory(tests)
+
+if(BUILD_TESTS)
+    add_subdirectory(tests)
+endif()
