@@ -1,5 +1,5 @@
 # twin_pack
-Simple cross-platform (Windows/Linux) library for binary and json serialization / deserializtion based on popular libraries msgpack and nlohmann-json
+Simple cross-platform (Windows/Linux) header-only library for binary and json serialization based on popular libraries **msgpack** and **nlohmann-json**
 # example
 ```
 #include "twin_pack.h"
@@ -88,7 +88,11 @@ int main()
 	return 0;
 }
 ```
+# dependency
+twin_pack requires [boost](https://www.boost.org/), [msgpack](https://github.com/msgpack/msgpack-c/tree/cpp_master), [nlohmann-json](https://github.com/nlohmann/json) libraries. Tests depend on [googletest](https://github.com/google/googletest) framework and are linked with it, so if you want to build them (BUILD_TESTS=ON), you need to have this dependency installed.
 # build
 ```
+mkdir build
+cd build
 cmake .. -DBoost_DIR=boos_dir -Dnlohmann_json_DIR=nlohmann_json_dir -Dmsgpack-cxx_DIR=msgpack_dir -DGTest_DIR=gtest_dir -DBUILD_TESTS=ON
 ```
