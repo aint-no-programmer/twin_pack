@@ -96,3 +96,5 @@ mkdir build
 cd build
 cmake .. -DBoost_DIR=boos_dir -Dnlohmann_json_DIR=nlohmann_json_dir -Dmsgpack-cxx_DIR=msgpack_dir -DGTest_DIR=gtest_dir -DBUILD_TESTS=ON
 ```
+# license
+twin_pack is licensed under MIT Software License, see the [LICENSE](LICENSE) file for details.
