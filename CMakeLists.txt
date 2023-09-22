@@ -5,7 +5,12 @@ if(CMAKE_VERSION VERSION_GREATER 3.12)
     cmake_policy(SET CMP0074 NEW)
 endif()
 
-find_package(Boost CONFIG REQUIRED)
+if(CMAKE_TOOLCHAIN_FILE)
+    find_package(Boost REQUIRED)
+else()
+    find_package(Boost CONFIG REQUIRED)
+endif()
+
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(msgpack-cxx CONFIG REQUIRED)
 
