@@ -91,10 +91,17 @@ int main()
 # dependency
 twin_pack requires [boost](https://www.boost.org/), [msgpack](https://github.com/msgpack/msgpack-c/tree/cpp_master), [nlohmann-json](https://github.com/nlohmann/json) libraries. Tests depend on [googletest](https://github.com/google/googletest) framework and are linked with it, so if you want to build them (BUILD_TESTS=ON), you need to have this dependency installed.
 # build
+#### via cmake
 ```
 mkdir build
 cd build
 cmake .. -DBoost_DIR=boos_dir -Dnlohmann_json_DIR=nlohmann_json_dir -Dmsgpack-cxx_DIR=msgpack_dir -DGTest_DIR=gtest_dir -DBUILD_TESTS=ON
+```
+#### via vcpkg
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=<path to vcpkg>\scripts\buildsystems\vcpkg.cmake -DBUILD_TESTS=ON 
 ```
 # license
 twin_pack is licensed under MIT Software License, see the [LICENSE](LICENSE) file for details.
